@@ -1,0 +1,67 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.8.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.14.0",
+    selenideVersion = "5.20.1",
+    junitVersion = "5.7.1",
+    aspectjVersion = "1.9.6",
+    restAssuredVersion = "4.3.3",
+    ownerVersion = "1.0.12",
+    fakerVersion="1.0.2"
+
+
+allure {
+    version = allureVersion
+    autoconfigure = true
+    aspectjweaver = true
+    configuration = "testImplementation"
+    useJUnit5 {
+        version = allureVersion
+    }
+}
+
+dependencies {
+    testImplementation(
+            "org.aspectj:aspectjweaver:$aspectjVersion",
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.junit.jupiter:junit-jupiter-api:$junitVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "com.github.javafaker:javafaker:$fakerVersion",
+            "io.qameta.allure:allure-rest-assured:$allureVersion")
+    compileOnly("io.qameta.allure:allure-java-commons:$allureVersion")
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task selenide_android(type: Test) {
+    useJUnitPlatform {
+        includeTags 'selenide_android'
+    }
+    systemProperties(System.getProperties())
+}
