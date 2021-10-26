@@ -9,6 +9,12 @@ public class Environment {
         return !config.remoteDriverUrl().equals("");
     }
 
+    public static String getWebRemoteDriver() {
+        return String.format(config.remoteDriverUrl(),
+                config.remoteDriverUser(),
+                config.remoteDriverPassword());
+    }
+
     public static boolean isVideoOn() {
         return !config.videoStorage().equals("");
     }

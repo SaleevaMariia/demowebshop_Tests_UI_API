@@ -27,7 +27,7 @@ public class DriverSettings {
         if (Environment.isRemoteWebDriver()) {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
-            Configuration.remote = Environment.config.remoteDriverUrl();
+            Configuration.remote = Environment.getWebRemoteDriver();
         }
 
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);

@@ -15,5 +15,7 @@ public interface EnvironmentConfig extends Config {
     @DefaultValue("1920x1080")
     String browserSize();
     String remoteDriverUrl();
+    String remoteDriverUser();
+    String remoteDriverPassword();
     String videoStorage();
 }
