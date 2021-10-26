@@ -12,6 +12,7 @@ import pages.RegisterResultPage;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
+import static dictionaries.UIEndpoint.REGISTER;
 
 @Tag("ui")
 @Story("Registration")
@@ -25,7 +26,7 @@ public class RegisterUITests extends TestBase {
     @Test
     @DisplayName("Successful register through UI")
     public void registerUITest(){
-        open("/register");
+        open(REGISTER.getPath());
         RegisterResultPage resultPage = registerPage.register(user);
         resultPage.checkRegistrationResult();
     }
@@ -33,7 +34,7 @@ public class RegisterUITests extends TestBase {
     @Test
     @DisplayName("Unsuccessful register through UI (password != confirm password)")
     public void registerUITestWithWrongConfirmPassword(){
-        open("/register");
+        open(REGISTER.getPath());
         user.setConfirmPassword(user.getPassword()+"111");
         registerPage.register(user);
         registerPage.checkValidationErrConfirmPassword();

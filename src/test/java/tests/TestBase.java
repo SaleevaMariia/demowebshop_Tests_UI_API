@@ -1,13 +1,14 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Browsers;
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import config.App;
-import config.Environment;
 import data.Product;
 import dictionaries.Menu;
+import helpers.ActionOnFailure;
 import helpers.AllureAttachments;
 import helpers.DriverSettings;
-import helpers.DriverUtils;
 import io.qameta.allure.junit5.AllureJunit5;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ExtendWith({AllureJunit5.class})
+@ExtendWith({ActionOnFailure.class})
 public class TestBase {
 
     protected ListOfProductsPage listOfProductsPage = new ListOfProductsPage();
@@ -34,18 +36,12 @@ public class TestBase {
 
     @AfterEach
     public void addAttachments() {
-        String sessionId = DriverUtils.getSessionId();
-
-        //todo добавлять вложения только для упавших тестов + скрины в момент падения
-        AllureAttachments.addScreenshotAs("Last screenshot");
-        AllureAttachments.addPageSource();
-        AllureAttachments.addBrowserConsoleLogs();
-
-        Selenide.closeWebDriver();
-
-        if (Environment.isVideoOn()) {
-            AllureAttachments.addVideo(sessionId);
+        if (WebDriverRunner.driver().hasWebDriverStarted()) {
+            AllureAttachments.addPageSource();
+            if (Configuration.browser.equals(Browsers.CHROME))
+                AllureAttachments.addBrowserConsoleLogs();
         }
+
     }
 
     protected double getTotalSum(List<Product> productList){

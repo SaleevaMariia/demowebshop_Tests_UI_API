@@ -14,6 +14,7 @@ import pages.LoginPage;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
+import static dictionaries.UIEndpoint.LOGIN;
 
 @Tag("ui")
 @Story("Login")
@@ -27,7 +28,7 @@ public class LoginUITests extends TestBase {
     @Test
     @DisplayName("Successful login through UI")
     public void registerUITest(){
-        open("/login");
+        open(LOGIN.getPath());
         ListOfProductsPage listOfProducts = loginPage.login(user.getEmail(), user.getPassword());
         Assertions.assertTrue(listOfProducts.getMainHeader().isUserLogIn(user.getEmail()));
     }
@@ -35,7 +36,7 @@ public class LoginUITests extends TestBase {
     @Test
     @DisplayName("Unsuccessful login through UI - incorrect password")
     public void registerUIWrongPasswordTest(){
-        open("/login");
+        open(LOGIN.getPath());
         ListOfProductsPage listOfProducts = loginPage.login(user.getEmail(), user.getPassword()+"111");
         Assertions.assertFalse(listOfProducts.getMainHeader().isUserLogIn(user.getEmail()));
     }

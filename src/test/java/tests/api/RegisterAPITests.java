@@ -4,16 +4,19 @@ import allure.JiraIssue;
 import api.ApiSteps;
 import config.App;
 import data.User;
+import helpers.ActionOnFailure;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 @Tag("api")
 @Story("Registration")
 @Owner("saleevamo")
 @JiraIssue("HOMEWORK-264")
+@ExtendWith({ActionOnFailure.class})
 public class RegisterAPITests {
     private User user = new User();
     private final ApiSteps apiSteps = new ApiSteps();
@@ -27,7 +30,6 @@ public class RegisterAPITests {
         RestAssured.baseURI = App.config.apiUrl();
     }
 
-    //todo добавить в allure красивые запросы + вложения
     @Test
     @DisplayName("Successful register through API")
     public void registerAPITest(){

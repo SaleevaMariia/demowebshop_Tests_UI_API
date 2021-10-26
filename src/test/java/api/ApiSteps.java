@@ -3,15 +3,15 @@ package api;
 import data.User;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 import org.openqa.selenium.Cookie;
 
 import java.util.List;
 
+import static dictionaries.ApiEndpoint.LOGIN;
+import static dictionaries.ApiEndpoint.REGISTER;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 
 public class ApiSteps {
@@ -25,7 +25,7 @@ public class ApiSteps {
                 .cookie(cookie)
                 .body(body)
                 .when()
-                .post("/register")
+                .post(REGISTER.getPath())
                 .then()
                 .statusCode(302)
                 .extract().response().asString();
@@ -35,7 +35,7 @@ public class ApiSteps {
     @Step("Getting response to GET request /register")
     public Response getRequestForRegistration(){
         Response response = given()
-                .get("/register")
+                .get(REGISTER.getPath())
                 .then()
                 .extract().response();
         return response;
@@ -66,7 +66,7 @@ public class ApiSteps {
                 .contentType(ContentType.URLENC.withCharset("UTF-8"))
                 .body(body)
                 .when()
-                .post("/login")
+                .post(LOGIN.getPath())
                 .then()
                 .statusCode(302)
                 .extract().response();
@@ -92,8 +92,4 @@ public class ApiSteps {
                 .body("success", is(true))
                 .body("message", is("The product has been added to your <a href=\"/cart\">shopping cart</a>"));
     }
-
-
-
-
 }

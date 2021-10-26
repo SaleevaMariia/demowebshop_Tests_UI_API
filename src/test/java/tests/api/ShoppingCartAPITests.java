@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
+import static dictionaries.UIEndpoint.CART;
 
 @Tag("api")
 @Story("ShoppingCart")
@@ -43,7 +44,7 @@ public class ShoppingCartAPITests extends TestBase {
         apiSteps.addProductToShoppingCart(13,
                 WebDriverRunner.getWebDriver().manage().getCookieNamed("NOPCOMMERCE.AUTH"));
         productList.add(book);
-        open("/cart");
+        open(CART.getPath());
         shoppingCartPage.checkProductsInShoppingCart(productList);
         shoppingCartPage.checkTotalPrice(getTotalSum(productList));
     }
@@ -58,7 +59,7 @@ public class ShoppingCartAPITests extends TestBase {
         apiSteps.addProductToShoppingCart(14, auth);
         productList.add(book);
         productList.add(jewelry);
-        open("/cart");
+        open(CART.getPath());
         shoppingCartPage.checkProductsInShoppingCart(productList);
         shoppingCartPage.checkTotalPrice(getTotalSum(productList));
     }
