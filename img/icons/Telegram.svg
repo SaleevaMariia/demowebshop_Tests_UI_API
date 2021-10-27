@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="40pt" height="40pt" viewBox="0 0 40 40" version="1.1">
+    <defs>
+        <linearGradient id="linear0" gradientUnits="userSpaceOnUse" x1="-765.54" y1="328.95" x2="-765.62" y2="328.76"
+                        gradientTransform="matrix(96,0,0,-96,73516.4,31588.4)">
+            <stop offset="0" style="stop-color:rgb(21.568627%,68.235294%,88.627451%);stop-opacity:1;"/>
+            <stop offset="1" style="stop-color:rgb(11.764706%,58.823529%,78.431373%);stop-opacity:1;"/>
+        </linearGradient>
+        <linearGradient id="linear1" gradientUnits="userSpaceOnUse" x1="-763.08" y1="326.91" x2="-763.01" y2="326.79"
+                        gradientTransform="matrix(52.196,0,0,-43.78,39851.524,14332.432)">
+            <stop offset="0" style="stop-color:rgb(93.72549%,96.862745%,98.823529%);stop-opacity:1;"/>
+            <stop offset="1" style="stop-color:rgb(100%,100%,100%);stop-opacity:1;"/>
+        </linearGradient>
+    </defs>
+    <g id="surface1">
+        <path style=" stroke:none;fill-rule:nonzero;fill:url(#linear0);"
+              d="M 36.199219 20 C 36.199219 28.945312 28.945312 36.199219 20 36.199219 C 11.054688 36.199219 3.800781 28.945312 3.800781 20 C 3.800781 11.054688 11.054688 3.800781 20 3.800781 C 28.945312 3.800781 36.199219 11.054688 36.199219 20 Z M 36.199219 20 "/>
+        <path style=" stroke:none;fill-rule:nonzero;fill:rgb(78.431373%,85.490196%,91.764706%);fill-opacity:1;"
+              d="M 17.039062 27.398438 C 16.519531 27.398438 16.601562 27.238281 16.398438 26.71875 L 14.878906 21.640625 L 26.761719 14.601562 "/>
+        <path style=" stroke:none;fill-rule:nonzero;fill:rgb(66.27451%,78.823529%,86.666667%);fill-opacity:1;"
+              d="M 17.039062 27.398438 C 17.355469 27.398438 17.652344 27.25 17.839844 27 L 20 24.921875 L 17.320312 23.28125 "/>
+        <path style=" stroke:none;fill-rule:nonzero;fill:url(#linear1);"
+              d="M 17.320312 23.28125 L 23.839844 28.121094 C 24.558594 28.519531 25.121094 28.320312 25.28125 27.441406 L 27.960938 14.921875 C 28.238281 13.800781 27.519531 13.320312 26.839844 13.640625 L 11.238281 19.640625 C 10.160156 20.078125 10.160156 20.679688 11.039062 20.960938 L 15.039062 22.199219 L 24.320312 16.359375 C 24.761719 16.078125 25.160156 16.238281 24.800781 16.519531 "/>
+    </g>
+</svg>

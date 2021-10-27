@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
+import static helpers.DriverUtils.getSessionId;
 
 @ExtendWith({AllureJunit5.class})
 @ExtendWith({ActionOnFailure.class})
@@ -40,10 +41,10 @@ public class TestBase {
     public void addAttachments() {
         if (WebDriverRunner.driver().hasWebDriverStarted()) {
             AllureAttachments.addPageSource();
+            AllureAttachments.addVideo(getSessionId());
             if (Configuration.browser.equals(Browsers.CHROME))
                 AllureAttachments.addBrowserConsoleLogs();
         }
-
     }
 
     protected double getTotalSum(List<Product> productList){

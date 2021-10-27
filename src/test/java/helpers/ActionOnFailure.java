@@ -1,6 +1,5 @@
 package helpers;
 
-import config.Environment;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
@@ -12,8 +11,6 @@ public class ActionOnFailure implements AfterEachCallback {
     public void afterEach(ExtensionContext context) {
         if (context.getExecutionException().isPresent()) {
             AllureAttachments.addScreenshotAs("Last screenshot");
-            if (!Environment.config.videoStorage().equals(""))
-                AllureAttachments.addVideo(DriverUtils.getSessionId());
         }
         closeWebDriver();
     }
