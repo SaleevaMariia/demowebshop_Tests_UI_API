@@ -19,6 +19,7 @@ public class CheckoutPage {
     private SelenideElement shippingContinueBtn = $("#shipping-buttons-container .new-address-next-step-button");
     private SelenideElement pickUpInStoreBtn = $("#PickUpInStore");
     private ElementsCollection shippingMethods = $$(".shipping-method input");
+    private ElementsCollection shippingMethodsCost = $$(".shipping-method label");
     private ElementsCollection paymentMethods = $$(".payment-method input");
     private SelenideElement shippingMethodContinueBtn = $("#shipping-method-buttons-container input");
     private SelenideElement paymentMethodContinueBtn = $("#payment-method-buttons-container input");
@@ -27,7 +28,6 @@ public class CheckoutPage {
     private SelenideElement confirmBtn = $("input[value='Confirm']");
     private SelenideElement totalSum = $(".order-total");
     private SelenideElement shippingAddress= $("#shipping-address-select");
-    private ElementsCollection shippingAddresses = $$("#shipping-address-select option");
 
 
     @Step("Filling billing address")
@@ -55,9 +55,12 @@ public class CheckoutPage {
     }
 
     @Step("Choosing shipping method")
-    public CheckoutPage choosingShippingMethod(ShippingMethods method){
+    public CheckoutPage choosingShippingMethod(ShippingMethods method) {
         shippingMethods.find(Condition.attribute("id", "shippingoption_" + method.getId()))
                 .click();
+        String cost = shippingMethodsCost.find(Condition.attribute("for", "shippingoption_" + method.getId()))
+                .getText();
+        method.setPrice(Double.valueOf(cost.substring(cost.indexOf("(") + 1, cost.indexOf(")"))));
         shippingMethodContinueBtn.click();
         return new CheckoutPage();
     }

@@ -4,14 +4,12 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import data.Product;
-import dictionaries.Menu;
 import io.qameta.allure.Step;
 import pages.components.MainHeader;
 import pages.components.MenuOfProducts;
 
 import java.util.Random;
 
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class ListOfProductsPage {
@@ -31,7 +29,7 @@ public class ListOfProductsPage {
         return menu;
     }
 
-    @Step("Choosing random product ana add it to shopping cart")
+    @Step("Choosing random product and adding it to shopping cart")
     public Product addRandomProductToCart(){
         SelenideElement element = productsAddToCard.get(new Random().nextInt(productsAddToCard.size()));
         String onclickStr = element.getAttribute("onclick");

@@ -20,6 +20,8 @@ import pages.ShoppingCartPage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 @ExtendWith({AllureJunit5.class})
 @ExtendWith({ActionOnFailure.class})
 public class TestBase {
@@ -55,5 +57,6 @@ public class TestBase {
     protected void addProductToShoppingCard(Menu menu){
         listOfProductsPage.getMenu().navigateTo(menu);
         productList.add(listOfProductsPage.addRandomProductToCart());
+        refresh();
     }
 }
