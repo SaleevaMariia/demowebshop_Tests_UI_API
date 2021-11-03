@@ -7,17 +7,16 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class LoginPage {
 
-    private SelenideElement emailInput = $("#Email");
-    private SelenideElement passwordInput = $("#Password");
-    private SelenideElement loginBtn = $(".login-button");
+    private SelenideElement emailInput = $("#Email"),
+            passwordInput = $("#Password"),
+            loginBtn = $(".login-button");
+
 
     @Step("Logging with email:{email} and password:{password}")
-    public ListOfProductsPage login(String email, String password){
+    public ListOfProductsPage login(String email, String password) {
         emailInput.val(email);
         passwordInput.val(password);
         loginBtn.click();
         return new ListOfProductsPage();
     }
-
-
 }

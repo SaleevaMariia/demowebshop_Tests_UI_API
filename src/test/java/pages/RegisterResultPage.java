@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class RegisterResultPage {
 
-    private SelenideElement registerResultTxt = $(".result");
-    private SelenideElement continueBtn = $("input[value='Continue']");
+    private SelenideElement registerResultTxt = $(".result"),
+            continueBtn = $("input[value='Continue']");
 
     @Step("Checking registration result")
     public void checkRegistrationResult() {

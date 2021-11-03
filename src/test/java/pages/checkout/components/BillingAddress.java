@@ -1,27 +1,26 @@
-package pages.checkout;
+package pages.checkout.components;
 
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 import io.qameta.allure.Step;
+import pages.checkout.CheckoutPage;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class BillingAddress {
 
-    private SelenideElement selectAddress = $("#billing-address-select");
-    private SelenideElement selectCountry = $("#BillingNewAddress_CountryId");
-    private SelenideElement cityInput = $("#BillingNewAddress_City");
-    private SelenideElement addressInput = $("#BillingNewAddress_Address1");
-    private SelenideElement zipCodeInput = $("#BillingNewAddress_ZipPostalCode");
-    private SelenideElement phoneNumberInput = $("#BillingNewAddress_PhoneNumber");
-    private SelenideElement continueBtn = $("#billing-buttons-container .new-address-next-step-button");
-
-
+    private SelenideElement selectAddress = $("#billing-address-select"),
+            selectCountry = $("#BillingNewAddress_CountryId"),
+            cityInput = $("#BillingNewAddress_City"),
+            addressInput = $("#BillingNewAddress_Address1"),
+            zipCodeInput = $("#BillingNewAddress_ZipPostalCode"),
+            phoneNumberInput = $("#BillingNewAddress_PhoneNumber"),
+            continueBtn = $("#billing-buttons-container .new-address-next-step-button");
 
     @Step("Filling new Address")
-    public CheckoutPage createNewAddress(){
+    public CheckoutPage createNewAddress() {
         Faker faker = new Faker();
-        if(selectAddress.exists()){
+        if (selectAddress.exists()) {
             selectAddress.selectOptionContainingText("New Address");
         }
         selectCountry.selectOptionByValue("2");

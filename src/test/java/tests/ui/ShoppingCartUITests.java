@@ -13,6 +13,8 @@ import org.junit.jupiter.api.parallel.ResourceLock;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
+import static utils.Utils.addProductToShoppingCard;
+import static utils.Utils.getTotalSum;
 
 @Tag("ui")
 @Story("ShoppingCart")
@@ -27,7 +29,7 @@ public class ShoppingCartUITests extends TestBase {
     @DisplayName("Adding one product to shopping cart")
     public void addOneProductToShoppingCardUITest(){
         open("");
-        addProductToShoppingCard(Menu.BOOKS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
 
         shoppingCartPage.checkProductsInShoppingCart(productList);
@@ -38,11 +40,11 @@ public class ShoppingCartUITests extends TestBase {
     @WithLogin
     @CleanCart
     @DisplayName("Adding two different product to shopping cart")
-    public void addTwoProductsToShoppingCardUITest(){
+    public void addTwoProductsToShoppingCardUITest() {
         open("");
 
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS, listOfProductsPage, productList);
 
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
 
@@ -54,10 +56,10 @@ public class ShoppingCartUITests extends TestBase {
     @WithLogin
     @CleanCart
     @DisplayName("Deleting product from shopping cart")
-    public void deletingProductShoppingCardUITest(){
+    public void deletingProductShoppingCardUITest() {
         open("");
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS, listOfProductsPage, productList);
 
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
 
@@ -66,5 +68,4 @@ public class ShoppingCartUITests extends TestBase {
         shoppingCartPage.checkProductsInShoppingCart(productList);
         shoppingCartPage.checkTotalPrice(getTotalSum(productList));
     }
-
 }

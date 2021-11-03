@@ -7,7 +7,6 @@ import config.App;
 import data.User;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,7 @@ import pages.ListOfProductsPage;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("api")
 @Story("Login")
@@ -27,7 +27,6 @@ public class LoginAPITests extends TestBase {
     private final ApiSteps apiSteps = new ApiSteps();
     private ListOfProductsPage listOfProducts = new ListOfProductsPage();
 
-
     @Test
     @DisplayName("Successful login through API")
     public void loginAPITest(){
@@ -36,6 +35,6 @@ public class LoginAPITests extends TestBase {
         Cookie auth = new Cookie("NOPCOMMERCE.AUTH", cookie);
         WebDriverRunner.getWebDriver().manage().addCookie(auth);
         open("");
-        Assertions.assertTrue(listOfProducts.getMainHeader().isUserLogIn(user.getEmail()));
+        assertTrue(listOfProducts.getMainHeader().isUserLogIn(user.getEmail()));
     }
 }

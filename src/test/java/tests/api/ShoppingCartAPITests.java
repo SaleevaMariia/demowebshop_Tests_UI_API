@@ -21,6 +21,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
 import static dictionaries.UIEndpoint.CART;
+import static utils.Utils.getTotalSum;
 
 @Tag("api")
 @Story("ShoppingCart")
@@ -63,5 +64,4 @@ public class ShoppingCartAPITests extends TestBase {
         shoppingCartPage.checkProductsInShoppingCart(productList);
         shoppingCartPage.checkTotalPrice(getTotalSum(productList));
     }
-
 }

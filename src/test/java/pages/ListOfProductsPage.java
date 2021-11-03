@@ -16,8 +16,9 @@ public class ListOfProductsPage {
 
     private MainHeader mainHeader = new MainHeader();
     private MenuOfProducts menu = new MenuOfProducts();
-    private ElementsCollection products = $$(".product-grid .product-item");
-    private ElementsCollection productsAddToCard = $$(".product-grid .item-box input[value='Add to cart']");
+
+    private ElementsCollection products = $$(".product-grid .product-item"),
+            productsAddToCard = $$(".product-grid .item-box input[value='Add to cart']");
 
     @Step("Getting main header")
     public MainHeader getMainHeader() {
@@ -41,6 +42,4 @@ public class ListOfProductsPage {
         element.click();
         return product;
     }
-
-
 }

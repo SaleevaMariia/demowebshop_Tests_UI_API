@@ -9,8 +9,13 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Tag("api")
 @Story("Registration")
@@ -18,6 +23,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 @JiraIssue("HOMEWORK-264")
 @ExtendWith({ActionOnFailure.class})
 public class RegisterAPITests {
+
     private User user = new User();
     private final ApiSteps apiSteps = new ApiSteps();
     private final static String OK_REGISTRATION=
@@ -35,7 +41,7 @@ public class RegisterAPITests {
     public void registerAPITest(){
         Response getResponse = apiSteps.getRequestForRegistration();
         String postResponse = apiSteps.registerUser(user, apiSteps.getToken(getResponse), apiSteps.getCookie(getResponse));
-        Assertions.assertTrue(postResponse.contains(OK_REGISTRATION));
+        assertTrue(postResponse.contains(OK_REGISTRATION));
     }
 
     @Test
@@ -43,7 +49,7 @@ public class RegisterAPITests {
     public void registerAPITestCookieIsEmpty(){
         Response getResponse = apiSteps.getRequestForRegistration();
         String postResponse = apiSteps.registerUser(user, apiSteps.getToken(getResponse), "");
-        Assertions.assertTrue(postResponse.contains(WRONG_REGISTRATION));
+        assertTrue(postResponse.contains(WRONG_REGISTRATION));
     }
 
     @Test
@@ -51,7 +57,6 @@ public class RegisterAPITests {
     public void registerAPITestTokenIsEmpty(){
         Response getResponse = apiSteps.getRequestForRegistration();
         String postResponse = apiSteps.registerUser(user, "", apiSteps.getToken(getResponse));
-        Assertions.assertTrue(postResponse.contains(WRONG_REGISTRATION));
+        assertTrue(postResponse.contains(WRONG_REGISTRATION));
     }
-
 }

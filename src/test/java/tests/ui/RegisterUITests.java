@@ -21,13 +21,14 @@ import static dictionaries.UIEndpoint.REGISTER;
 public class RegisterUITests extends TestBase {
 
     private RegisterPage registerPage = new RegisterPage();
+    private RegisterResultPage resultPage = new RegisterResultPage();
     private User user = new User();
 
     @Test
     @DisplayName("Successful register through UI")
     public void registerUITest(){
         open(REGISTER.getPath());
-        RegisterResultPage resultPage = registerPage.register(user);
+        resultPage = registerPage.register(user);
         resultPage.checkRegistrationResult();
     }
 

@@ -40,8 +40,4 @@ public class LoginUITests extends TestBase {
         ListOfProductsPage listOfProducts = loginPage.login(user.getEmail(), user.getPassword()+"111");
         Assertions.assertFalse(listOfProducts.getMainHeader().isUserLogIn(user.getEmail()));
     }
-
-
-
-
 }

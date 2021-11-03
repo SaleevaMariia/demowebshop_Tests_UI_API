@@ -12,16 +12,17 @@ import static com.codeborne.selenide.Selenide.$$;
 public class RegisterPage {
 
     private ElementsCollection genderBtns = $$(".gender label");
-    private SelenideElement firstNameInput = $("#FirstName");
-    private SelenideElement lastNameInput = $("#LastName");
-    private SelenideElement emailInput = $("#Email");
-    private SelenideElement passwordInput = $("#Password");
-    private SelenideElement confirmPasswordInput = $("#ConfirmPassword");
-    private SelenideElement registerBtn = $("#register-button");
-    private SelenideElement validationErrConfirmPassword = $("span[for='ConfirmPassword']");
+
+    private SelenideElement firstNameInput = $("#FirstName"),
+            lastNameInput = $("#LastName"),
+            emailInput = $("#Email"),
+            passwordInput = $("#Password"),
+            confirmPasswordInput = $("#ConfirmPassword"),
+            registerBtn = $("#register-button"),
+            validationErrConfirmPassword = $("span[for='ConfirmPassword']");
 
     @Step("Filling registration form")
-    public RegisterResultPage register(User user){
+    public RegisterResultPage register(User user) {
         genderBtns.find(Condition.text(user.getGender().getValue())).click();
         firstNameInput.val(user.getFirstName());
         lastNameInput.val(user.getLastName());
@@ -36,5 +37,4 @@ public class RegisterPage {
     public void checkValidationErrConfirmPassword(){
         validationErrConfirmPassword.shouldHave(Condition.text("The password and confirmation password do not match"));
     }
-
 }

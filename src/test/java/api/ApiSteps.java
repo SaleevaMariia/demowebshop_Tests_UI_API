@@ -51,10 +51,10 @@ public class ApiSteps {
     @Step("Getting cookie from result")
     public String getCookie(Response response){
         List<String> headers = response.getHeaders().getValues("Set-Cookie");
-        String cookie="";
+        String cookie = "";
         for (String s: headers) {
-            cookie+=s.substring(0, s.indexOf(';'));
-            cookie+="; ";
+            cookie += s.substring(0, s.indexOf(';'));
+            cookie += "; ";
         }
         return cookie;
     }

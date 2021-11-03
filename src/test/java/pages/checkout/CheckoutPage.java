@@ -8,6 +8,8 @@ import dictionaries.CreditCardType;
 import dictionaries.PaymentMethods;
 import dictionaries.ShippingMethods;
 import io.qameta.allure.Step;
+import pages.checkout.components.BillingAddress;
+import pages.checkout.components.CreditCard;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -16,28 +18,29 @@ public class CheckoutPage {
 
     private BillingAddress billingAddress = new BillingAddress();
     private CreditCard creditCard = new CreditCard();
-    private SelenideElement shippingContinueBtn = $("#shipping-buttons-container .new-address-next-step-button");
-    private SelenideElement pickUpInStoreBtn = $("#PickUpInStore");
-    private ElementsCollection shippingMethods = $$(".shipping-method input");
-    private ElementsCollection shippingMethodsCost = $$(".shipping-method label");
-    private ElementsCollection paymentMethods = $$(".payment-method input");
-    private SelenideElement shippingMethodContinueBtn = $("#shipping-method-buttons-container input");
-    private SelenideElement paymentMethodContinueBtn = $("#payment-method-buttons-container input");
-    private SelenideElement purchaseOrderNumberInput = $("#PurchaseOrderNumber");
-    private SelenideElement paymentInformationContinueBtn = $("#payment-info-buttons-container input");
-    private SelenideElement confirmBtn = $("input[value='Confirm']");
-    private SelenideElement totalSum = $(".order-total");
-    private SelenideElement shippingAddress= $("#shipping-address-select");
 
+    private SelenideElement shippingContinueBtn = $("#shipping-buttons-container .new-address-next-step-button"),
+            pickUpInStoreBtn = $("#PickUpInStore"),
+            shippingMethodContinueBtn = $("#shipping-method-buttons-container input"),
+            paymentMethodContinueBtn = $("#payment-method-buttons-container input"),
+            purchaseOrderNumberInput = $("#PurchaseOrderNumber"),
+            paymentInformationContinueBtn = $("#payment-info-buttons-container input"),
+            confirmBtn = $("input[value='Confirm']"),
+            totalSum = $(".order-total"),
+            shippingAddress = $("#shipping-address-select");
+
+    private ElementsCollection shippingMethods = $$(".shipping-method input"),
+            shippingMethodsCost = $$(".shipping-method label"),
+            paymentMethods = $$(".payment-method input");
 
     @Step("Filling billing address")
     public CheckoutPage fillBillingAddress() {
-       return billingAddress.createNewAddress();
+        return billingAddress.createNewAddress();
     }
 
     @Step("Filling credit card data and click continue")
     public CheckoutPage fillCreditCard(CreditCardType type, String cardHolder,
-                                       String cardNumber, int month, int year, int cardCode){
+                                       String cardNumber, int month, int year, int cardCode) {
         creditCard.fillCreditCard(type, cardHolder, cardNumber, month, year, cardCode);
         paymentInformationContinueBtn.click();
         return new CheckoutPage();
@@ -97,5 +100,4 @@ public class CheckoutPage {
     public void checkTotalSum(double sum){
         totalSum.shouldHave(Condition.text(String.valueOf(sum)));
     }
-
 }

@@ -1,26 +1,26 @@
 package pages.components;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import pages.ShoppingCartPage;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class MainHeader {
 
-    private SelenideElement self = $(".header-links");
-    private SelenideElement account = self.$(".account");
-    private SelenideElement logOut = self.$(".ico-logout");
-    private SelenideElement cart = self.$(".ico-cart");
-    private SelenideElement cartQty = cart.$(".cart-qty");
-    private SelenideElement logIn = self.$(".ico-login");
-    private SelenideElement register = self.$(".ico-register");
+    private SelenideElement self = $(".header-links"),
+            account = self.$(".account"),
+            logOut = self.$(".ico-logout"),
+            cart = self.$(".ico-cart"),
+            cartQty = cart.$(".cart-qty"),
+            logIn = self.$(".ico-login"),
+            register = self.$(".ico-register");
 
     @Step("Checking that user with email:{email} logged in")
-    public boolean isUserLogIn(String email){
-        if (account.has(Condition.exist) && account.has(Condition.text(email))
-                && logIn.has(Condition.not(Condition.exist)))
+    public boolean isUserLogIn(String email) {
+        if (account.has(visible) && account.has(text(email))
+                && logIn.has(not(visible)))
             return true;
         return false;
     }
@@ -36,7 +36,4 @@ public class MainHeader {
             return true;
         return false;
     }
-
-
-
 }

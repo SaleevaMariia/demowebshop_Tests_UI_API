@@ -1,7 +1,5 @@
 package data;
 
-import java.util.List;
-
 public class Product {
 
     private String name;
@@ -35,7 +33,4 @@ public class Product {
                 ", price=" + price +
                 '}';
     }
-
-
-
 }

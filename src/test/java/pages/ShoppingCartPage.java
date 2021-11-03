@@ -11,6 +11,7 @@ import pages.checkout.CheckoutPage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
+import static utils.Utils.scrollToElementAndClick;
 
 public class ShoppingCartPage {
 
@@ -59,15 +60,8 @@ public class ShoppingCartPage {
 
     @Step("Checking out shopping cart")
     public CheckoutPage checkOut(){
-        termsOfService.click();
+        actions().moveToElement(termsOfService).click(termsOfService).perform();
         scrollToElementAndClick(checkOutBtn);
         return new CheckoutPage();
     }
-
-    private void scrollToElementAndClick(SelenideElement element) {
-        int yScrollPosition = element.getLocation().getY();
-        executeJavaScript("window.scroll(0, " + yScrollPosition + ");");
-        element.click();
-    }
-
 }

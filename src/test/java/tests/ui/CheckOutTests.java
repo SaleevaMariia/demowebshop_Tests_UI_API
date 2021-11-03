@@ -18,6 +18,8 @@ import pages.checkout.OrderCompleted;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
+import static utils.Utils.addProductToShoppingCard;
+import static utils.Utils.getTotalSum;
 
 @Tag("ui")
 @Story("Checkout")
@@ -35,7 +37,7 @@ public class CheckOutTests extends TestBase {
     @DisplayName("Checkout order: get product in store + pay by cash on delivery")
     public void getProductInStorePayByCashOnDeliveryUITest(){
         open("");
-        addProductToShoppingCard(Menu.BOOKS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
         checkoutPage = shoppingCartPage.checkOut();
         checkoutPage
@@ -46,7 +48,7 @@ public class CheckOutTests extends TestBase {
 
         checkoutPage.checkTotalSum(
                 getTotalSum(productList)
-                + PaymentMethods.CASH_OD_DELIVERY.getPrice()
+                        + PaymentMethods.CASH_OD_DELIVERY.getPrice()
         );
 
         orderCompleted = checkoutPage.clickConfirm();
@@ -59,7 +61,7 @@ public class CheckOutTests extends TestBase {
     @DisplayName("Checkout order: product don't need delivery + pay by card")
     public void getProductNoDeliveryPayByCardUITest(){
         open("");
-        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS);
+        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS, listOfProductsPage, productList);
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
         checkoutPage = shoppingCartPage.checkOut();
         checkoutPage
@@ -85,11 +87,11 @@ public class CheckOutTests extends TestBase {
     @WithLogin
     @CleanCart
     @DisplayName("Checkout order: shipping method is ground + pay by check")
-    public void getProductUseGroundShippingMethodPayByCheckUITest(){
+    public void getProductUseGroundShippingMethodPayByCheckUITest() {
         open("");
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS, listOfProductsPage, productList);
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
         checkoutPage = shoppingCartPage.checkOut();
         checkoutPage
@@ -113,11 +115,11 @@ public class CheckOutTests extends TestBase {
     @WithLogin
     @CleanCart
     @DisplayName("Checkout order: shipping method is next day air+ pay by purchase")
-    public void getProductUseNextDayAirShippingMethodPayByPurchaseUITest(){
+    public void getProductUseNextDayAirShippingMethodPayByPurchaseUITest() {
         open("");
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS, listOfProductsPage, productList);
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
         checkoutPage = shoppingCartPage.checkOut();
         checkoutPage
@@ -141,11 +143,11 @@ public class CheckOutTests extends TestBase {
     @WithLogin
     @CleanCart
     @DisplayName("Checkout order: shipping method is second day air + pay by cash on delivery")
-    public void getProductUseSecondDayAirShippingMethodPayByCashUITest(){
+    public void getProductUseSecondDayAirShippingMethodPayByCashUITest() {
         open("");
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.BOOKS);
-        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.BOOKS, listOfProductsPage, productList);
+        addProductToShoppingCard(Menu.DIGITAL_DOWNLOADS, listOfProductsPage, productList);
         shoppingCartPage = listOfProductsPage.getMainHeader().goToShoppingCart();
         checkoutPage = shoppingCartPage.checkOut();
         checkoutPage
