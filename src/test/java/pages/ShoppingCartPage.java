@@ -11,7 +11,7 @@ import pages.checkout.CheckoutPage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
-import static utils.Utils.scrollToElementAndClick;
+import static helpers.Utils.scrollToElementAndClick;
 
 public class ShoppingCartPage {
 

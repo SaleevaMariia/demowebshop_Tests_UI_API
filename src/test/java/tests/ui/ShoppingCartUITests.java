@@ -13,8 +13,8 @@ import org.junit.jupiter.api.parallel.ResourceLock;
 import tests.TestBase;
 
 import static com.codeborne.selenide.Selenide.open;
-import static utils.Utils.addProductToShoppingCard;
-import static utils.Utils.getTotalSum;
+import static helpers.Utils.addProductToShoppingCard;
+import static helpers.Utils.getTotalSum;
 
 @Tag("ui")
 @Story("ShoppingCart")

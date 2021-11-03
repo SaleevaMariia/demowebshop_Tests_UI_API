@@ -21,7 +21,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
 import static dictionaries.UIEndpoint.CART;
-import static utils.Utils.getTotalSum;
+import static helpers.Utils.getTotalSum;
 
 @Tag("api")
 @Story("ShoppingCart")

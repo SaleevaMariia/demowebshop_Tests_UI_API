@@ -1,4 +1,4 @@
-package utils;
+package helpers;
 
 import com.codeborne.selenide.SelenideElement;
 import data.Product;
